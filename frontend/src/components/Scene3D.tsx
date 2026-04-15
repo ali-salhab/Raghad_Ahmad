@@ -76,7 +76,7 @@ export default function Scene3D() {
     const smallSpheres: THREE.Mesh[] = []
     sphereData.forEach(({ pos, color, size }) => {
       const g = new THREE.SphereGeometry(size, 8, 8)
-      const m = new THREE.MeshStandardMaterial({ color, emissive: color, emissiveIntensity: 1.5, transparent: true, opacity: 0.8 })
+      const m = new THREE.MeshBasicMaterial({ color, transparent: true, opacity: 0.8 })
       const mesh = new THREE.Mesh(g, m)
       mesh.position.set(pos[0], pos[1], pos[2])
       scene.add(mesh)
@@ -88,16 +88,6 @@ export default function Scene3D() {
     gridHelper.position.set(0, -5, -5)
     gridHelper.material = new THREE.LineBasicMaterial({ color: 0x4c1d95, transparent: true, opacity: 0.25 })
     scene.add(gridHelper)
-
-    // ─────────── LIGHTS ───────────
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.4)
-    scene.add(ambientLight)
-    const purpleLight = new THREE.PointLight(0x7c3aed, 3, 25)
-    purpleLight.position.set(-3, 2, 2)
-    scene.add(purpleLight)
-    const cyanLight = new THREE.PointLight(0x06b6d4, 2, 20)
-    cyanLight.position.set(3, -2, 1)
-    scene.add(cyanLight)
 
     // ─────────── ANIMATION ───────────
     const clock = new THREE.Clock()
