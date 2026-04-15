@@ -4,11 +4,11 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
-    "dev:backend": "cd backend && npm run dev",
-    "dev:frontend": "cd frontend && npm run dev",
-    "build": "cd frontend && npm run build && cd ../backend && npm run build",
-    "start": "cd backend && npm start",
-    "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install"
+    "dev:backend": "npm run dev --prefix backend",
+    "dev:frontend": "npm run dev --prefix frontend",
+    "build": "npm run build --prefix frontend && npm run build --prefix backend",
+    "start": "npm start --prefix backend",
+    "install:all": "npm install && npm install --prefix frontend && npm install --prefix backend"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
