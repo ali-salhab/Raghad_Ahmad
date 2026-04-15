@@ -42,7 +42,7 @@ export default function Hero({ data }: HeroProps) {
   const { personal } = data
 
   return (
-    <section id="home" className="relative h-screen min-h-[700px] overflow-hidden flex items-center">
+    <section id="home" className="relative h-screen min-h-[700px] flex items-start lg:items-center pt-28 lg:pt-0" style={{ overflow: 'clip' }}>
       {/* 3D Background */}
       <Scene3D />
 
