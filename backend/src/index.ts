@@ -28,7 +28,17 @@ const allowedOrigins = isProd
 
 app.use(cors({
   origin: (origin, cb) => {
-    if (!origin || allowedOrigins.includes(origin)) return cb(null, true)
+    // Allow requests with no origin (server-to-server, curl, etc.)
+    if (!origin) return cb(null, true)
+    // In production, also allow same-host requests dynamically
+    if (isProd) {
+      const appUrl = process.env.FRONTEND_URL || ''
+      // Accept if origin matches FRONTEND_URL or any *.onrender.com subdomain of this service
+      if (!appUrl || origin === appUrl || origin.endsWith('.onrender.com')) {
+        return cb(null, true)
+      }
+    }
+    if (allowedOrigins.includes(origin)) return cb(null, true)
     cb(new Error('Not allowed by CORS'))
   },
   credentials: true,
