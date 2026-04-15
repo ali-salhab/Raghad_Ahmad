@@ -35,7 +35,7 @@ export default function Navbar({ name }: NavbarProps) {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const initials = name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()
+  const initials = (name || '').split(' ').map(n => n[0] ?? '').join('').slice(0, 2).toUpperCase() || '?'
 
   return (
     <motion.nav

@@ -24,7 +24,7 @@ export default function Portfolio() {
     )
   }
 
-  if (error || !data) {
+  if (error || !data || !data.personal) {
     return (
       <div className="h-screen flex flex-col items-center justify-center bg-dark gap-4">
         <div className="text-5xl">⚠️</div>

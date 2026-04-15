@@ -7,12 +7,14 @@ interface FloatingPhotoProps {
 }
 
 export default function FloatingPhoto({ photoBase64, photoMimeType, name }: FloatingPhotoProps) {
-  const initials = name
+  const safeName = name || ''
+  const initials = safeName
     .split(' ')
-    .map((n) => n[0])
+    .filter(Boolean)
+    .map((n) => n[0] ?? '')
     .join('')
     .slice(0, 2)
-    .toUpperCase()
+    .toUpperCase() || '?'
 
   const imgSrc = photoBase64
     ? `data:${photoMimeType || 'image/jpeg'};base64,${photoBase64}`
