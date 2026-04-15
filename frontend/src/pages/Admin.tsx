@@ -38,8 +38,8 @@ export default function Admin() {
   async function saveSection(section: string, payload: unknown) {
     setSaving(true)
     try {
-      const { data: updated } = await axios.put<PortfolioData>('/api/portfolio', { [section]: payload }, { headers })
-      setData(updated)
+      const { data: response } = await axios.put<{ message: string; data: PortfolioData }>('/api/portfolio', { [section]: payload }, { headers })
+      setData(response.data)
       toast.success('Saved successfully!')
     } catch {
       toast.error('Failed to save')
